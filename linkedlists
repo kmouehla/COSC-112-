@@ -1,0 +1,85 @@
+//Kamil Mouehla, November 2nd, 2022
+public class LinkedIntList {
+	private ListNode front;
+
+	public LinkedIntList() {
+		front = null;
+
+	}
+	public ListNode getFront(){
+		return front;
+	}
+	public String toString() {
+		String toR = "";
+		if (front == null)
+			return toR + "Empty List";
+		else {
+			ListNode moving = front;
+			while (moving != null) {
+				toR = toR + " " + moving.data;
+				moving = moving.next;
+			}
+			return toR;
+		}
+	}
+
+	public void add(int i) {
+		if (front == null)
+			front = new ListNode(i);
+		else front.add(i);
+	}
+
+	public boolean hasConsecutive() {
+		if (front == null) {
+			return false;
+		} else {
+			return front.hasConsecutive();
+		}
+	}
+
+	public void expand(int n) {
+		if(front == null) {
+			return;
+		}
+		else front.expand(n);
+	}
+
+	public void removeFirst(int v) {
+		ListNode moving = new ListNode();
+		ListNode previous = new ListNode();
+
+		if (front.data == v) { //special case
+			front = front.next;
+		}
+		moving = front.next;
+		previous = front;
+
+		while (moving != null) {
+			if (moving.data == v) {
+				previous.next = moving.next;
+				return;
+			} else {
+				previous = moving;
+				moving = moving.next;
+			}
+		}
+	}
+
+	public void reverseThree() {
+		ListNode x = new ListNode();
+
+		if (front == null) {
+			return;
+		}
+
+		x = front;
+		while (x != null) {
+			int temp = x.data;
+			x.data = x.next.next.data;
+			x.next.next.data = temp;
+			x = x.next.next.next;
+		}
+		}
+	}
+
+
